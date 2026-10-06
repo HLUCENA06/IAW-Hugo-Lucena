@@ -1,4 +1,4 @@
-version: '3.8' #Es la version del formato del archivo de configuración. La 3.8 es la mas esatble
+#version: '3.8' #Es la version del formato del archivo de configuración. La 3.8 es la mas esatble
 
 services: #Define todos los contenedores que se van a forma
 

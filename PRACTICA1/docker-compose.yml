@@ -1,18 +1,11 @@
-#version: '3.8' #Es la version del formato del archivo de configuración. La 3.8 es la mas esatble
-
-services: #Define todos los contenedores que se van a forma
-
-  web: #Nombre interno que le damos al servicio
-
-    build: . #Construye la imagen leyendo el dockerfile
-
-    container_name: nimbusdocs #etiqueta visible del contenedor
-
-    ports: #Mapeo de puertos
+services:
+  web:
+    build: .
+    container_name: nimbusdocs
+    ports:
       - "8067:67"
-
     volumes:
-        #vincula la carpeta local con los index a la ruta oficial de apache
-      - ./www:/usr/local/apache2/htdocs #Lo que hay a la izquierda de los : pertenece al host y lo que hay a la derecha pertenece al docker
-      #vincula el vhosts directamente al docker para que los cambios realizados se apliquen automaticamente al iniciar
-      - ./apache/conf/vhosts.conf:/usr/local/apache2/conf/extra/httpd-vhosts.conf
+      # Vincula la carpeta local con los index a la ruta oficial de Ubuntu
+      - ./www:/var/www/html
+      # Vincula el vhosts directamente a la carpeta de sitios activados de Ubuntu
+      - ./apache/conf/vhosts.conf:/etc/apache2/sites-enabled/vhosts.conf

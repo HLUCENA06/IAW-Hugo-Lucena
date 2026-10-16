@@ -5,7 +5,18 @@ services:
     ports:
       - "8067:67"
     volumes:
-      # Vincula la carpeta local con los index a la ruta oficial de Ubuntu
+      # Las webs van a la ruta oficial
       - ./www:/var/www/html
-      # Vincula el vhosts directamente a la carpeta de sitios activados de Ubuntu
-      - ./apache/conf/vhosts.conf:/etc/apache2/sites-enabled/vhosts.conf
+      # Pasamos LA CARPETA ENTERA a sites-available
+      - ./apache/conf:/etc/apache2/sites-available
+  proxy:
+    image: nginx:latest
+    container_name: nimbusdocs-nginx
+    ports:
+      - "8080:80"
+      - "8443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./certificados:/etc/nginx/certificados:ro
+    depends_on:
+      - web

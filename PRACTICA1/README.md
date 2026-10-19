@@ -6,163 +6,347 @@ Dominios ficticios escogidos (es mi nombre y es facil de recordar):
 <br>
 Puerto interno en el que Apache escuchara dentro de su contenedor: 67
 <br>
-<br>
-# Explicación de la Práctica
+# EXPLICACIÓN DE LA PRÁCTICA
 
-Antes de comenzar con la **Fase I**, es necesario configurar el entorno en Docker. Para ello, he creado la siguiente estructura de carpetas y archivos:
+Antes de la Fase 1, tengo que hacer el docker. Para ello he creado una estructura de carpetas:
 
 ![Estructura de carpetas](ruta/a/la/imagen.png)
 
-### Descripción de la estructura:
-* **`PRACTICA1/`**: Carpeta principal donde se aloja toda la configuración del Docker.
-* **`docker-compose.yml`**: Archivo de configuración que le indica a Docker qué contenedores/máquinas crear y bajo qué reglas.
-* **`apache/conf/vhosts.conf`**: Archivo de configuración personalizado para Apache. Define las reglas para que Apache gestione los dominios (gestión a nivel de servidor web, no de Docker). Al estar alojado en el *host*, se puede editar directamente sin entrar al contenedor (los cambios se aplican automáticamente reiniciando con `docker-compose restart`).
-* **`/www`**: Raíz pública del servidor web (equivalente tradicionalmente a `/var/www/html` o `htdocs`).
-  * **`hugo.iaw.net/`** y **`lucena.iaw.local/`**: Directorios para separar físicamente los archivos de cada sitio web.
+* **PRACTICA1:** Es la carpeta donde se aloja todo el docker.
+* **docker-compose.yml:** Es un archivo con el que se le dice a Docker qué máquina crear y con qué reglas.
+* **apache/conf/vhosts.conf:** Es un archivo de configuración personalizado. Es donde se escriben todas las reglas para que Apache gestione los dominios (ojo, Apache, no Docker). Como está en el host, puedo editarlo directamente desde ahí sin tener que entrar al docker (El cambio se hace automáticamente al reiniciar con el comando `docker-compose restart`).
+* **/www:** Raíz pública del servidor web (tradicionalmente es `www/var/html` o `htdocs`).
+* **hugo.iaw.net/ y lucena.iaw.local/:** Es para separar físicamente los archivos de cada web.
 
 ---
 
-## Configuración de Archivos
+## Configurando Dockerfile
 
-### 1. Configurando `Dockerfile`
-Este archivo se encarga de preparar la imagen base de Apache sobre Ubuntu y aplicar los cambios de configuración del puerto y los *Virtual Hosts* durante la fase de construcción (*build*), evitando tener que realizar estos pasos en cada arranque.
+Este archivo se encarga de preparar la imagen base Apache basada en Ubuntu y hacer los cambios de configuración del puerto y los Virtual Hosts durante la construcción (así no hay que hacerlo en cada arranque).
 
-![Dockerfile](ruta/a/la/imagen.png)
+![Configurando Dockerfile](ruta/a/la/imagen.png)
 
-> **Nota:** El parámetro `RUN` se utiliza para indicarle a la máquina que ejecute comandos en la fase de creación de la imagen.
-
----
-
-### 2. Configurando `docker-compose.yml`
-En lugar de ejecutar comandos extensos en la terminal, el archivo `docker-compose.yml` permite definir la configuración de la infraestructura virtualizada dentro de un archivo de texto estructurado.
-
-![docker-compose.yml](ruta/a/la/imagen.png)
-
-> Los **volúmenes** permiten a los contenedores acceder y utilizar archivos físicos ubicados en el equipo *host*.
+Ya hay otra práctica explicando el Dockerfile, pero aquí he añadido el parámetro `RUN` que sirve para decirle a la máquina que ejecute un comando mientras se está creando.
 
 ---
 
-### 3. Configurando `vhosts.conf`
-Permite almacenar y gestionar distintas páginas web. Este archivo se carga en el contenedor gracias a la configuración de volúmenes establecida en `docker-compose.yml`.
+## Configurando docker-compose.yml
 
-![vhosts.conf](ruta/a/la/imagen.png)
+En lugar de ejecutar comandos larguísimos en la terminal, con `docker-compose.yml` defino toda la configuración de la máquina virtualizada (contenedor) en un archivo de texto estructurado.
 
-*(En el mismo directorio se encuentra el archivo de configuración para el otro servidor).*
+![Configurando docker-compose.yml](ruta/a/la/imagen.png)
+
+Los volúmenes permiten a los docker usar archivos físicos del host.
+
+---
+
+## Configurando vhosts.conf
+
+Es un documento para almacenar distintas páginas web. Este se carga en el docker por la configuración de volúmenes que he establecido en `docker-compose.yml`.
+
+![Configurando vhosts.conf](ruta/a/la/imagen.png)
+
+*(En el mismo directorio, otro archivo con el otro servidor)*
 
 ---
 
 # FASE I
 
-Con la estructura previa lista, procedemos a iniciar Docker. 
+Con lo anterior hecho, puedo iniciar ya el docker. De los archivos que he creado hasta ahora, `docker-compose` y `Dockerfile` si se modifican, pueden provocar que haya que “formatear” el docker, cosa que no debería de tener riesgo puesto que la mayoría (o todas) las modificaciones que voy a hacer se van a hacer a través del host gracias a los volúmenes de `docker-compose`. En cambio, el archivo `vhosts.conf` sí puedo tocarlo sin problema porque está montado como volumen y de esta forma está “sincronizado” con el docker (de igual forma con los index de cada servidor). Lo que sí hace es que cuando edite este archivo, si tengo el docker encendido, tengo que reiniciarlo para aplicar el cambio.
 
-> **Aviso sobre persistencia y cambios:**
-> * Si se modifican los archivos `docker-compose.yml` o `Dockerfile`, puede ser necesario reconstruir/recrear el contenedor. Esto no supone un riesgo de pérdida de datos, ya que la mayoría de modificaciones se realizan en el *host* a través de los volúmenes.
-> * El archivo `vhosts.conf` y los archivos `index` de cada servidor se pueden editar directamente desde el *host* sin problema, ya que están montados como volúmenes. Si el contenedor está en ejecución al modificar `vhosts.conf`, solo se requiere reiniciar el servicio para aplicar los cambios.
+![Iniciar Docker](ruta/a/la/imagen.png)
 
-![Inicio de Docker](ruta/a/la/imagen.png)
-
-![Verificación de servicios](ruta/a/la/imagen.png)
+![Sincronización con Docker](ruta/a/la/imagen.png)
 
 ---
 
-## Protección de Archivos Sensibles e Internos
+## Proteger archivo de marca interna
 
-Se ha creado un archivo de configuración para el dominio `lucena.iaw.local`:
+He creado un archivo de “configuración” para el dominio `lucena.iaw.local`:
 
 ![Archivo de configuración](ruta/a/la/imagen.png)
 
-Para proteger este archivo, se han añadido las siguientes directivas dentro del bloque de configuración del dominio en `vhosts.conf`:
+Para proteger este archivo de configuración, he añadido un par de líneas en el bloque de configuración del dominio en `vhosts.conf`:
 
-![Configuración de protección en vhosts.conf](ruta/a/la/imagen.png)
+![Líneas en vhosts.conf](ruta/a/la/imagen.png)
 
-### Explicación de las directivas:
+### Options -Indexes
+Cuando en Apache intentas entrar en el dominio y este no tiene `index.html`, Apache lista los directorios de la carpeta y entre ellos podría listar el archivo de configuración. Esta opción hace que no salga el archivo de esa forma, o sea, que no se liste.
 
-1. **`Options -Indexes`**
-   Cuando se accede a un directorio que no contiene un archivo `index.html`, Apache por defecto lista todos los archivos del directorio. Esta opción deshabilita el listado de directorios para evitar la exposición imprevista de archivos.
-   
-   ![Options -Indexes](ruta/a/la/imagen.png)
+![Options -Indexes](ruta/a/la/imagen.png)
 
-2. **`<Files "configurar.php"> Require all denied </Files>`**
-   Impide el acceso directo al archivo a través de la URL (ej. `http://lucena.iaw.local/configurar.php`).
+```apache
+<Files "configurar.php">
+    Require all denied
+</Files>
+```
 
----
-
-## Creación del Dominio Fantasma ("Default Host")
-
-Si por un error de red o resolución DNS una petición imprevista llega a la IP del servidor, Apache respondería sirviendo la web configurada en el primer bloque del archivo `vhosts.conf` (por ejemplo, si `nohugo.com` apuntara a la IP, mostraría `hugo.iaw.net`).
-
-Para prevenir esto, se añade un bloque genérico al principio del archivo `vhosts.conf` que actúa como "muro de contención" (*Catch-all / Default VirtualHost*):
-
-![Dominio fantasma](ruta/a/la/imagen.png)
+Esto impide que puedas acceder al archivo vía URL, o sea, poniendo en la URL `lucena.iaw.local/configurar.php`.
 
 ---
 
-## Verificación de Contenido por Dominio (`curl`)
+## Crear dominio fantasma
 
-![Comprobación curl 1](ruta/a/la/imagen.png)
+Si por un error de red o por culpa de un atacante, una URL errónea conectara con la IP de mi servidor, en pantalla saldrá la web que se encuentre en el bloque más alto del archivo `vhosts.conf`. O sea, si por un error de internet la URL `nohugo.com` redirigiera a mi servidor, saldría el index de `hugo.iaw.net` por ser la que está más arriba. Para impedir esto y prevenirlo, creo un bloque nuevo en lo alto del archivo para que funcione de muro:
 
-![Comprobación curl 2](ruta/a/la/imagen.png)
+![Crear dominio fantasma](ruta/a/la/imagen.png)
+
+---
+
+## Contenido de cada dominio con curl
+
+![curl dominio 1](ruta/a/la/imagen.png)
+
+![curl dominio 2](ruta/a/la/imagen.png)
 
 ---
 
 # FASE II
 
-## Certificados y Claves
+## Certificado y clave
 
-Para habilitar HTTPS en la web se requiere una **clave privada** (custodiada únicamente por el servidor) y un **certificado público** (que valida la identidad del dominio, ej. `hugo.iaw.net`). Se utiliza **ECDSA**, el estándar moderno basado en curvas elípticas.
+Para que la página web tenga certificado HTTPS necesita de una clave privada (la llave que solo tiene el servidor) y de un certificado público (lo que demuestra que la página es, por ejemplo, `hugo.iaw.net`). Voy a crearla usando ECDSA, el estándar moderno que genera claves más seguras.
 
-1. Dentro de la carpeta del proyecto, se crea el directorio `certificados/`.
-2. Se genera la clave privada utilizando ECDSA:
+Me sitúo en la carpeta de la práctica y creo una carpeta nueva (`certificados`) donde crearé un certificado digital cuyo CN va a ser `hugo.iaw.net`.
 
-![Generación de clave privada ECDSA](ruta/a/la/imagen.png)
+Primero genero una clave privada usando ECDSA:
 
-> **Comandos utilizados:**
-> * `openssl`: Herramienta criptográfica general.
-> * `ecparam`: Indica que se trabajará con parámetros de curvas elípticas.
-> * `-genkey`: Ordena la generación de una nueva clave criptográfica.
-> * `-name prime256v1`: Especifica la curva ECDSA estándar exigida por su alta eficiencia y nivel de seguridad.
+![Generar clave privada ECDSA](ruta/a/la/imagen.png)
 
-3. Se genera el certificado digital autofirmado utilizando la clave privada:
+* `openssl` es una herramienta criptográfica para crear claves.
+* `ecparam` le indica a openssl que vamos a trabajar con parámetros de curvas.
+* `-genkey` ordena que se cree una clave criptográfica nueva.
+* `-name prime256v1` especifica el nombre exacto de la curva que se va a utilizar. Es la curva ECDSA estándar exigida por su alta eficiencia y seguridad.
 
-![Generación del certificado autofirmado](ruta/a/la/imagen.png)
+Ahora genero un certificado digital autofirmado usando la clave privada:
 
-> **Parámetros:**
-> * `req`: Gestión y creación de solicitudes de certificados.
-> * `-new`: Genera una nueva solicitud.
-> * `-x509`: Emitir directamente un certificado autofirmado en lugar de una petición CSR.
+![Generar certificado autofirmado](ruta/a/la/imagen.png)
 
----
-
-## Protocolos y Certificados en Nginx
-
-1. Se crea el archivo de configuración para Nginx (`nimbus.conf`):
-
-![Configuración nimbus.conf](ruta/a/la/imagen.png)
-
-2. Se añade el servicio del proxy inverso Nginx en `docker-compose.yml`:
-
-![Servicio proxy en docker-compose](ruta/a/la/imagen.png)
+* `req` gestiona las solicitudes de certificados y la creación de certificados autofirmados.
+* `-new`: Indica que se va a crear una nueva solicitud de certificado.
+* `-x509`: Especifica que en lugar de generar una petición estándar (CSR), queremos emitir directamente un certificado autofirmado.
 
 ---
 
-## Redirección Automática a HTTPS
+## Protocolos y certificados en Nginx
 
-Para redirigir todo el tráfico del puerto 80 (HTTP) al puerto 443 (HTTPS), se añade un bloque `server` adicional en la configuración de Nginx escuchando en el puerto 80 y devolviendo la redirección con `$host` y `$request_uri`:
+Primero, creo un archivo de configuración de Nginx llamado `nimbus.conf`:
 
-![Redirección HTTP a HTTPS](ruta/a/la/imagen.png)
+![Crear nimbus.conf](ruta/a/la/imagen.png)
 
-> Se mapea el puerto `80:80` en el servicio `proxy` dentro de `docker-compose.yml`.
+Ahora en `docker-compose.yml` creo un nuevo servicio llamado `proxy` que será para el Nginx:
+
+![Servicio proxy en docker-compose.yml](ruta/a/la/imagen.png)
 
 ---
 
-## Importancia de la Cabecera `Host`
+## Redirigir a HTTPS
 
-Durante las pruebas, se eliminan temporalmente las cabeceras en el archivo de configuración de Nginx:
+La idea es que cada petición que llegue a través del puerto 80 (HTTP) se redirija automáticamente al puerto 443 (HTTPS).
 
-![Cabeceras borradas](ruta/a/la/imagen.png)
+En el archivo de configuración de Nginx creo un bloque adicional (`server`) que escuche el puerto 80 y devuelva la redirección utilizando la variable `$host` y `$request_uri`:
 
-![Configuración sin cabeceras](ruta/a/la/imagen.png)
+![Redirigir a HTTPS](ruta/a/la/imagen.png)
 
-Se reinicia únicamente el contenedor del proxy:
+De paso, añado el puerto `80:80` en el `docker-compose` (`proxy`) para que esto funcione.
+
+---
+
+## Importancia de la cabecera Host
+
+Temporalmente, borro las cabeceras del archivo de configuración de Nginx:
+
+![Borrar cabeceras 1](ruta/a/la/imagen.png)
+
+![Borrar cabeceras 2](ruta/a/la/imagen.png)
+
+Guardo los cambios y reinicio el docker de Nginx: `proxy` (no hace falta reiniciar todo el docker): `docker compose restart proxy`.
+
+Cuando tú le pides a Nginx `https://localhost:8443/` con la cabecera `Host: hugo.iaw.net`, Nginx actúa como intermediario. Si no le reenvías esa cabecera a Apache, Nginx se la manda al backend llamando simplemente al contenedor `http://web:67` de forma genérica. Apache recibe una petición que no especifica para qué dominio va dirigida. Al no saber qué marca mostrar, Apache recurre por defecto a su VirtualHost bloqueado o genérico (`bloqueo.conf`), el cual tiene denegado el acceso general, devolviendo el `403 Forbidden`.
+
+![Error 403 Forbidden](ruta/a/la/imagen.png)
+
+*(Vuelvo a descomentar las cabeceras en nimbus.conf y hago restart)*
+
+---
+
+## Verificar con openssl s_client el protocolo y cifrado negociados
+
+Comprobar mediante la herramienta `openssl s_client` que el protocolo (TLS 1.2 o TLS 1.3) y el cifrado seguro que configuramos en Nginx se están negociando correctamente. Ejecuto:
+
 ```bash
-docker compose restart proxy
+openssl s_client -connect localhost:8443 -servername hugo.iaw.net
+```
+
+La salida son muchas líneas, tengo que buscar dos líneas en concreto:
+`Protocol : TLSv1.3` o `TLSv1.2`
+
+Y otra línea que muestre alguno de los cifrados negociados, como:
+`Cipher : ECDHE-ECDSA-AES128-GCM-SHA256`
+
+Salida para el README:
+
+```text
+CONNECTED(00000003)
+depth=0 CN = hugo.iaw.net
+verify error:num=18:self-signed certificate
+verify return:1
+depth=0 CN = hugo.iaw.net
+verify return:1
+---
+Certificate chain
+ 0 s:CN = hugo.iaw.net
+   i:CN = hugo.iaw.net
+   a:PKEY: id-ecPublicKey, 256 (bit); sigalg: ecdsa-with-SHA256
+   v:NotBefore: Oct 16 15:07:40 2026 GMT; NotAfter: Oct 16 15:07:40 2027 GMT
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIIBhDCCASmgAwIBAgIUSM9J+v96Ej9B8z4+XfyV/GzObicwCgYIKoZIzj0EAwIw
+FzEVMBMGA1UEAwwMaHVnby5pYXcubmV0MB4XDTI2MTAxNjE1MDc0MFoXDTI3MTAx
+NjE1MDc0MFowFzEVMBMGA1UEAwwMaHVnby5pYXcubmV0MBYwEwYHKoZIzj0CAQYI
+KoZIzj0DAQcDQgAEqWA5xU6evGoNWKwb6UVmxKtwIdEFvYlGOywUoauFmUm+YxOZ
+F2kM/IaQorJQzFFI/AS+FOmIIZJVhYSKjJZOF6NTMFEwHQYDVR0OBBYEFPcv43+t
+PdzOStARCRf1fTdXTaM3MB8GA1UdIwQYMBaAFPcv43+tPdzOStARCRf1fTdXTaM3
+MA8GA1UdEwEB/wQFMAMBAf8wCgYIKoZIzj0EAwIDSQAwRgIhANP3eBSSiWT62SOR
+mwgC38PYMi+glwaioZa8K01c5DtRAiEAro4bK6z/NvK8RULvIB0vT8YRtxgrH20e
+O6v69be6qvk=
+-----END CERTIFICATE-----
+subject=CN = hugo.iaw.net
+issuer=CN = hugo.iaw.net
+---
+No client certificate CA names sent
+Peer signing digest: SHA256
+Peer signature type: ECDSA
+Server Temp Key: X25519, 253 bits
+---
+SSL handshake has read 789 bytes and written 394 bytes
+Verification error: self-signed certificate
+---
+New, TLSv1.3, Cipher is TLS_AES_256_GCM_SHA384
+Server public key is 256 bit
+Secure Renegotiation IS NOT supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+Early data was not sent
+Verify return code: 18 (self-signed certificate)
+---
+---
+Post-Handshake New Session Ticket arrived:
+SSL-Session:
+    Protocol  : TLSv1.3
+    Cipher    : TLS_AES_256_GCM_SHA384
+    Session-ID: 53D6A6AA0F5915DF9C7875625AB1AD037E43B15E8B211684A90E2F79FBCF523F
+    Session-ID-ctx: 
+    Resumption PSK: F30981C87FB6AF8AF8477752E700E84C0FB2A25CD76857D8718207625D45D58BA165A540BE9F9257C3844B0E8A0579AE
+    PSK identity: None
+    PSK identity hint: None
+    SRP username: None
+    TLS session ticket lifetime hint: 300 (seconds)
+    TLS session ticket:
+    0000 - 18 f2 58 b0 2c 05 3d 5b-65 b4 2f 2e 44 0a 67 b1   ..X.,.=[e./.D.g.
+    0010 - 2f 86 b2 9b 29 61 a5 21-45 a6 26 56 48 06 b3 cb   /...)a.!E.&VH...
+    0020 - 9c 92 81 36 fa 7d 76 39-19 92 20 83 66 cf e1 67   ...6.}v9.. .f..g
+    0030 - 70 cb 32 8f 83 92 e9 56-15 10 01 55 51 1f 54 59   p.2....V...UQ.TY
+    0040 - a8 55 7a c4 c2 a7 74 50-63 d4 65 75 ae e6 a9 18   .Uz...tPc.eu....
+    0050 - 67 f6 2e a6 32 ef 36 11-a7 be 9a 15 51 85 10 0a   g...2.6.....Q...
+    0060 - eb 3d 6b de c7 2a a2 ba-49 7e d7 dc b6 6a d2 e1   .=k..*..I~...j..
+    0070 - c2 3a 36 02 cc b4 0d 5b-ae e7 0c ca dc 03 0c 10   .:6....[........
+    0080 - 72 5d c0 f5 0d 09 87 2e-5d da 79 df cd 67 ef f0   r]......].y..g..
+    0090 - 77 fd 0c 8e 6e 59 26 53-c3 0f 36 ee 93 7e ad e3   w...nY&S..6..~..
+    00a0 - 3a 48 9f c3 d8 91 e4 fb-ec cf 60 1d ed b8 04 8f   :H........`.....
+    00b0 - 36 13 7c 52 c6 bc 2b fb-87 5c 04 ce ea de cf 90   6.|R..+..\......
+    00c0 - b0 9e 6f 86 d6 6e cb 4a-9a 70 e0 17 3d 75 78 f7   ..o..n.J.p..=ux.
+    00d0 - 74 06 7a 1e e7 6a f7 b1-17 71 e3 9d b0 ec 51 96   t.z..j...q....Q.
+    00e0 - 03 9f b5 0c 29 e4 8b 38-bc 96 0b 66 ce 52 7e c2   ....)..8...f.R~.
+
+    Start Time: 1792172076
+    Timeout   : 7200 (sec)
+    Verify return code: 18 (self-signed certificate)
+    Extended master secret: no
+    Max Early Data: 0
+---
+read R BLOCK
+---
+Post-Handshake New Session Ticket arrived:
+SSL-Session:
+    Protocol  : TLSv1.3
+    Cipher    : TLS_AES_256_GCM_SHA384
+    Session-ID: 85C287A7FEE494AC39BF9BEC96932BA30E79E7CE5CA58C239BA5069E1AB5A696
+    Session-ID-ctx: 
+    Resumption PSK: C4A12B0EE52B92C80DE40EB737C17B06A404DF6A4A5FCE985E3B7613CEFC96BA92AB9E49D83B1DD8FDBAA37976BAC934
+    PSK identity: None
+    PSK identity hint: None
+    SRP username: None
+    TLS session ticket lifetime hint: 300 (seconds)
+    TLS session ticket:
+    0000 - 18 f2 58 b0 2c 05 3d 5b-65 b4 2f 2e 44 0a 67 b1   ..X.,.=[e./.D.g.
+    0010 - 26 0e e8 3c dc 0f d3 e9-1d 05 e1 91 fd 69 32 34   &..<.........i24
+    0020 - 4a 50 4e 05 c3 e3 15 98-18 49 db 68 6f 2c 56 40   JPN......I.ho,V@
+    0030 - f5 7b cf 76 9e 49 33 f8-5a 56 e0 7e 63 d4 cc a2   .{.v.I3.ZV.~c...
+    0040 - 7c 64 96 9f 4c bb 17 26-9a 51 fd e2 23 d5 6a 2f   |d..L..&.Q..#.j/
+    0050 - 1f 37 d0 fc 64 48 10 ab-20 a7 84 2f 4f 70 77 65   .7..dH.. ../Opwe
+    0060 - 01 78 38 a0 0e 75 8d 27-74 43 c8 03 c4 24 7f 8c   .x8..u.'tC...$..
+    0070 - 69 7b df 02 9e 0a c3 9e-38 f7 da 54 ed 8d 3e 46   i{......8..T..>F
+    0080 - 81 cc 95 28 fd a5 a0 95-ca df 73 26 97 8b 3a d8   ...(......s&..:.
+    0090 - 0e 2c 0e 16 e7 eb 6e d9-0b 61 db 5a de c8 de e1   .,....n..a.Z....
+    00a0 - 19 cf 38 28 ea 78 a0 cf-aa 61 ff e0 84 3d 5a f0   ..8(.x...a...=Z.
+    00b0 - 20 52 2c 18 49 28 8c f7-52 aa 84 04 64 35 7b ae   R,.I(..R...d5{.
+    00c0 - 4d a1 d2 f2 b7 78 9f 78-d0 9a 8e b2 10 4b 4e 9a   M....x.x.....KN.
+    00d0 - 28 5e 31 2a 4f 71 26 a6-6d b4 10 df b4 74 39 86   (^1*Oq&.m....t9.
+    00e0 - 16 4d 24 29 31 2c 22 4e-d3 87 e5 a8 90 90 7a 5b   .M$)1,"N......z[
+
+    Start Time: 1792172076
+    Timeout   : 7200 (sec)
+    Verify return code: 18 (self-signed certificate)
+    Extended master secret: no
+    Max Early Data: 0
+---
+read R BLOCK
+closed
+```
+
+---
+
+## Seguridad y límite de peticiones
+
+Se me pide añadir alguna cabecera de seguridad mínima, como `Strict-Transport-Security` que obliga al navegador a conectarse siempre por HTTPS. También me pide que añada `X-Content-Type-Options` que previene ataques de MIME. Y por último una a mi elección que será `Content-Security-Policy` que restringe qué recursos (scripts, imágenes, hojas de estilo) está permitido cargar el navegador y desde qué fuentes.
+
+Para hacer esto, tengo que modificar el archivo de configuración de Nginx y añadir las líneas que corresponden:
+
+![Modificar nimbus.conf](ruta/a/la/imagen.png)
+
+También de paso añado las líneas de `limit`, que sirven para proteger el servidor web frente a ataques de fuerza bruta, bots o scraping. En resumen, controlan el tráfico y diferencian tráfico abusivo del legítimo.
+
+Uno va al principio del archivo de configuración (fuera de los bloques):
+
+![Líneas limit fuera de bloques](ruta/a/la/imagen.png)
+
+Y el otro va justo al inicio del bloque `location /`:
+
+![Líneas limit en location /](ruta/a/la/imagen.png)
+
+Ahora ejecuto una ráfaga de peticiones repetidas. Si todo está bien, debería de salir algo así:
+
+![Ráfaga de peticiones](ruta/a/la/imagen.png)
+
+Los primeros números (`200`) corresponden a las tasas de peticiones permitidas.
+Y los siguientes (`500`) indican que Nginx ha bloqueado inmediatamente las peticiones sobrantes por haber superado el límite configurado.
+
+---
+
+# FASE III
+
+## Diagnóstico provocado
+
+| Síntoma observado | Hipótesis inicial | Comando de diagnóstico usado | Causa real y solución |
+| :--- | :--- | :--- | :--- |
+| Al acceder correctamente mediante el proxy con la cabecera Host, Apache devuelve un error 403 Forbidden inesperado, a pesar de que Nginx pasa bien los datos. | Podría ser un problema del puerto al que apunta el proxy inverso o un problema en el directorio de la web | `cat apache/conf/hugo.conf` | El VirtualHost de Apache tiene configurada una directiva de control de acceso restrictiva (`Require all denied`) que bloquea la lectura del directorio.<br><br>**Solución:** Modificar la directiva en el VirtualHost a `Require all granted`. |
+| Al realizar una petición HTTPS contra el proxy inverso, Apache responde directamente con un 403 Forbidden genérico y el puerto del backend. | El servidor web interno (Apache) está apagado o el contenedor no responde en el puerto 67. | `curl -k -H "Host: hugo.iaw.net" https://localhost:8443/`<br>combinado con la revisión del bloque location en Nginx. | Nginx no estaba reenviando la cabecera Host del cliente (`proxy_set_header Host $host;`), por lo que Apache no podía identificar a qué VirtualHost dirigido correspondía la petición y aplicaba el bloqueo por defecto.<br><br>**Solución:** Descomentar la directiva `proxy_set_header Host $host;` dentro del bloque `location /` de Nginx y reiniciar el proxy. |
+
+Pruebas de los errores ejecutados:
+
+![Prueba de error 1](ruta/a/la/imagen.png)
+
+![Prueba de error 2](ruta/a/la/imagen.png)

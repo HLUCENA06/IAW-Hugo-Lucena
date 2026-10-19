@@ -3,14 +3,16 @@
 Dominios ficticios escogidos (es mi nombre y es facil de recordar):
 * hugo.iaw.net
 * lucena.iaw.local
-<br>
+
 Puerto interno en el que Apache escuchara dentro de su contenedor: 67
 <br>
+MPM: event. Se utiliza event porque delega las conexiones inactivas (Keep-Alive) a hilos dedicados del sistema. Esto optimiza el uso de memoria RAM y CPU al trabajar tras un proxy inverso
+
 # EXPLICACIÓN DE LA PRÁCTICA
 
 Antes de la Fase 1, tengo que hacer el docker. Para ello he creado una estructura de carpetas:
 
-![Estructura de carpetas](ruta/a/la/imagen.png)
+![Estructura de carpetas](imagenes/foto1.png)
 
 * **PRACTICA1:** Es la carpeta donde se aloja todo el docker.
 * **docker-compose.yml:** Es un archivo con el que se le dice a Docker qué máquina crear y con qué reglas.
@@ -24,7 +26,7 @@ Antes de la Fase 1, tengo que hacer el docker. Para ello he creado una estructur
 
 Este archivo se encarga de preparar la imagen base Apache basada en Ubuntu y hacer los cambios de configuración del puerto y los Virtual Hosts durante la construcción (así no hay que hacerlo en cada arranque).
 
-![Configurando Dockerfile](ruta/a/la/imagen.png)
+![Configurando Dockerfile](imagenes/foto2.png)
 
 Ya hay otra práctica explicando el Dockerfile, pero aquí he añadido el parámetro `RUN` que sirve para decirle a la máquina que ejecute un comando mientras se está creando.
 
@@ -34,7 +36,7 @@ Ya hay otra práctica explicando el Dockerfile, pero aquí he añadido el parám
 
 En lugar de ejecutar comandos larguísimos en la terminal, con `docker-compose.yml` defino toda la configuración de la máquina virtualizada (contenedor) en un archivo de texto estructurado.
 
-![Configurando docker-compose.yml](ruta/a/la/imagen.png)
+![Configurando docker-compose.yml](imagenes/foto3.png)
 
 Los volúmenes permiten a los docker usar archivos físicos del host.
 
@@ -44,7 +46,7 @@ Los volúmenes permiten a los docker usar archivos físicos del host.
 
 Es un documento para almacenar distintas páginas web. Este se carga en el docker por la configuración de volúmenes que he establecido en `docker-compose.yml`.
 
-![Configurando vhosts.conf](ruta/a/la/imagen.png)
+![Configurando vhosts.conf](imagenes/foto4.png)
 
 *(En el mismo directorio, otro archivo con el otro servidor)*
 
@@ -54,9 +56,9 @@ Es un documento para almacenar distintas páginas web. Este se carga en el docke
 
 Con lo anterior hecho, puedo iniciar ya el docker. De los archivos que he creado hasta ahora, `docker-compose` y `Dockerfile` si se modifican, pueden provocar que haya que “formatear” el docker, cosa que no debería de tener riesgo puesto que la mayoría (o todas) las modificaciones que voy a hacer se van a hacer a través del host gracias a los volúmenes de `docker-compose`. En cambio, el archivo `vhosts.conf` sí puedo tocarlo sin problema porque está montado como volumen y de esta forma está “sincronizado” con el docker (de igual forma con los index de cada servidor). Lo que sí hace es que cuando edite este archivo, si tengo el docker encendido, tengo que reiniciarlo para aplicar el cambio.
 
-![Iniciar Docker](ruta/a/la/imagen.png)
+![Iniciar Docker](imagenes/foto5.png)
 
-![Sincronización con Docker](ruta/a/la/imagen.png)
+![Sincronización con Docker](imagenes/foto6.png)
 
 ---
 
@@ -64,16 +66,14 @@ Con lo anterior hecho, puedo iniciar ya el docker. De los archivos que he creado
 
 He creado un archivo de “configuración” para el dominio `lucena.iaw.local`:
 
-![Archivo de configuración](ruta/a/la/imagen.png)
+![Archivo de configuración](imagenes/foto7.png)
 
 Para proteger este archivo de configuración, he añadido un par de líneas en el bloque de configuración del dominio en `vhosts.conf`:
 
-![Líneas en vhosts.conf](ruta/a/la/imagen.png)
+![Líneas en vhosts.conf](imagenes/foto8.png)
 
-### Options -Indexes
+![Options -Indexes](imagenes/foto9.png)
 Cuando en Apache intentas entrar en el dominio y este no tiene `index.html`, Apache lista los directorios de la carpeta y entre ellos podría listar el archivo de configuración. Esta opción hace que no salga el archivo de esa forma, o sea, que no se liste.
-
-![Options -Indexes](ruta/a/la/imagen.png)
 
 ```apache
 <Files "configurar.php">
@@ -89,15 +89,15 @@ Esto impide que puedas acceder al archivo vía URL, o sea, poniendo en la URL `l
 
 Si por un error de red o por culpa de un atacante, una URL errónea conectara con la IP de mi servidor, en pantalla saldrá la web que se encuentre en el bloque más alto del archivo `vhosts.conf`. O sea, si por un error de internet la URL `nohugo.com` redirigiera a mi servidor, saldría el index de `hugo.iaw.net` por ser la que está más arriba. Para impedir esto y prevenirlo, creo un bloque nuevo en lo alto del archivo para que funcione de muro:
 
-![Crear dominio fantasma](ruta/a/la/imagen.png)
+![Crear dominio fantasma](imagenes/foto10.png)
 
 ---
 
 ## Contenido de cada dominio con curl
 
-![curl dominio 1](ruta/a/la/imagen.png)
+![curl dominio 1](imagenes/foto11.png)
 
-![curl dominio 2](ruta/a/la/imagen.png)
+![curl dominio 2](imagenes/foto12.png)
 
 ---
 
@@ -111,7 +111,7 @@ Me sitúo en la carpeta de la práctica y creo una carpeta nueva (`certificados`
 
 Primero genero una clave privada usando ECDSA:
 
-![Generar clave privada ECDSA](ruta/a/la/imagen.png)
+![Generar clave privada ECDSA](imagenes/foto13.png)
 
 * `openssl` es una herramienta criptográfica para crear claves.
 * `ecparam` le indica a openssl que vamos a trabajar con parámetros de curvas.
@@ -120,7 +120,7 @@ Primero genero una clave privada usando ECDSA:
 
 Ahora genero un certificado digital autofirmado usando la clave privada:
 
-![Generar certificado autofirmado](ruta/a/la/imagen.png)
+![Generar certificado autofirmado](imagenes/foto14.png)
 
 * `req` gestiona las solicitudes de certificados y la creación de certificados autofirmados.
 * `-new`: Indica que se va a crear una nueva solicitud de certificado.
@@ -132,11 +132,11 @@ Ahora genero un certificado digital autofirmado usando la clave privada:
 
 Primero, creo un archivo de configuración de Nginx llamado `nimbus.conf`:
 
-![Crear nimbus.conf](ruta/a/la/imagen.png)
+![Crear nimbus.conf](imagenes/foto15.png)
 
 Ahora en `docker-compose.yml` creo un nuevo servicio llamado `proxy` que será para el Nginx:
 
-![Servicio proxy en docker-compose.yml](ruta/a/la/imagen.png)
+![Servicio proxy en docker-compose.yml](imagenes/foto16.png)
 
 ---
 
@@ -146,7 +146,7 @@ La idea es que cada petición que llegue a través del puerto 80 (HTTP) se redir
 
 En el archivo de configuración de Nginx creo un bloque adicional (`server`) que escuche el puerto 80 y devuelva la redirección utilizando la variable `$host` y `$request_uri`:
 
-![Redirigir a HTTPS](ruta/a/la/imagen.png)
+![Redirigir a HTTPS](imagenes/foto17.png)
 
 De paso, añado el puerto `80:80` en el `docker-compose` (`proxy`) para que esto funcione.
 
@@ -156,15 +156,15 @@ De paso, añado el puerto `80:80` en el `docker-compose` (`proxy`) para que esto
 
 Temporalmente, borro las cabeceras del archivo de configuración de Nginx:
 
-![Borrar cabeceras 1](ruta/a/la/imagen.png)
+![Borrar cabeceras 1](imagenes/foto18.png)
 
-![Borrar cabeceras 2](ruta/a/la/imagen.png)
+![Borrar cabeceras 2](imagenes/foto19.png)
 
 Guardo los cambios y reinicio el docker de Nginx: `proxy` (no hace falta reiniciar todo el docker): `docker compose restart proxy`.
 
 Cuando tú le pides a Nginx `https://localhost:8443/` con la cabecera `Host: hugo.iaw.net`, Nginx actúa como intermediario. Si no le reenvías esa cabecera a Apache, Nginx se la manda al backend llamando simplemente al contenedor `http://web:67` de forma genérica. Apache recibe una petición que no especifica para qué dominio va dirigida. Al no saber qué marca mostrar, Apache recurre por defecto a su VirtualHost bloqueado o genérico (`bloqueo.conf`), el cual tiene denegado el acceso general, devolviendo el `403 Forbidden`.
 
-![Error 403 Forbidden](ruta/a/la/imagen.png)
+![Error 403 Forbidden](imagenes/foto20.png)
 
 *(Vuelvo a descomentar las cabeceras en nimbus.conf y hago restart)*
 
@@ -315,21 +315,21 @@ Se me pide añadir alguna cabecera de seguridad mínima, como `Strict-Transport-
 
 Para hacer esto, tengo que modificar el archivo de configuración de Nginx y añadir las líneas que corresponden:
 
-![Modificar nimbus.conf](ruta/a/la/imagen.png)
+![Modificar nimbus.conf](imagenes/foto21.png)
 
 También de paso añado las líneas de `limit`, que sirven para proteger el servidor web frente a ataques de fuerza bruta, bots o scraping. En resumen, controlan el tráfico y diferencian tráfico abusivo del legítimo.
 
 Uno va al principio del archivo de configuración (fuera de los bloques):
 
-![Líneas limit fuera de bloques](ruta/a/la/imagen.png)
+![Líneas limit fuera de bloques](imagenes/foto22.png)
 
 Y el otro va justo al inicio del bloque `location /`:
 
-![Líneas limit en location /](ruta/a/la/imagen.png)
+![Líneas limit en location /](imagenes/foto23.png)
 
 Ahora ejecuto una ráfaga de peticiones repetidas. Si todo está bien, debería de salir algo así:
 
-![Ráfaga de peticiones](ruta/a/la/imagen.png)
+![Ráfaga de peticiones](imagenes/foto24.png)
 
 Los primeros números (`200`) corresponden a las tasas de peticiones permitidas.
 Y los siguientes (`500`) indican que Nginx ha bloqueado inmediatamente las peticiones sobrantes por haber superado el límite configurado.
@@ -347,6 +347,27 @@ Y los siguientes (`500`) indican que Nginx ha bloqueado inmediatamente las petic
 
 Pruebas de los errores ejecutados:
 
-![Prueba de error 1](ruta/a/la/imagen.png)
+![Prueba de error 1](imagenes/foto25.png)
 
-![Prueba de error 2](ruta/a/la/imagen.png)
+![Prueba de error 2](imagenes/foto26.png)
+
+# DOCUMENTACION QUE SE PIDE PARA EL README
+## Fase I. Punto 3
+Un dominio que no coincida con ningún Virtual Host debe caer en un comportamiento controlado por vosotros (no el primero al azar) — explicad en el README por qué pasa eso.
+* Apache procesa e incluye los archivos .conf cargados por orden alfabético estricto. Al nombrar el archivo de bloqueo como bloqueo.conf, este se evalúa en primer lugar (antes que hugo.conf y lucena.conf). Como en Apache el primer VirtualHost cargado actúa siempre como el VirtualHost por defecto, cualquier petición con un nombre de dominio que no coincida con los ServerName de las marcas cae automáticamente en bloqueo.conf (el cual contiene la directiva Require all denied).
+
+## Fase II. Punto 2
+Configurar el bloque server de Nginx con ssl_protocols restringido a TLS 1.2 y 1.3 (nada de versiones obsoletas) y un cipher suite razonado en el README.
+* Se usan suites ECDHE y AES-GCM para garantizar Forward Secrecy (PFS), seguridad robusta y rendimiento con aceleración por hardware.
+
+## Fase II. Punto 3
+Redirigir automáticamente todo el tráfico HTTP (puerto 80) a HTTPS con un código de estado correcto — justificad en el README por qué ese código y no otro.
+* return 301 https://$host$request_uri indica al cliente que el cambio a HTTPS es definitivo para que la cachee y fuerze el puerto seguro.
+
+## Fase II. Punto 5
+Verificar con openssl s_client el protocolo y cifrado negociados, y adjuntar la salida real (no una captura de pantalla del guion) en el README.
+* Esta en uno de los apartados de este documento mucho mas arriba
+
+## Fase II. Escenario de carga
+El equipo de NimbusDocs ha medido que un usuario legítimo leyendo documentación genera como máximo 3 peticiones por segundo de forma sostenida, con picos breves de hasta 6 peticiones/segundo al recargar varias pestañas a la vez. El mes pasado detectaron un script de scraping haciendo más de 20 peticiones por segundo contra la misma ruta. Calculad y justificad en el README los valores de rate y burst de vuestro limit_req_zone que bloqueen ese patrón de scraping sin penalizar a un usuario legítimo en pico.
+* Permite el tráfico legítimo y picos de pestañas múltiples, pero satura el búfer y bloquea con 503 los scripts de scraping masivo

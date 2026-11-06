@@ -1,0 +1,1 @@
+2026/11/06 16:04:34 [error] 37#37: *9 connect() failed (113: No route to host) while connecting to upstream, client: 172.18.0.1, server: cafeteria.iaw.local, request: "GET /index.php HTTP/1.1", upstream: "fastcgi://172.19.0.2:9000", host: "localhost:8447"

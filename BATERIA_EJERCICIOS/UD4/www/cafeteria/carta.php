@@ -8,11 +8,16 @@ require __DIR__ . '/inc/cabecera.php';
 
 // ✍️ 2.2 · Una función euros() que reciba un número (float) y devuelva el precio en texto,
 //    con dos decimales, coma decimal y el símbolo del euro: 3.2 → «3,20 €». Pista: number_format.
-
+function euros(float $x): string {
+    return number_format($x, 2 , ',' , '.' ) . ' €' ;
+}
 ?>
 <h2>La carta</h2>
+// ✍️ 2.1 · Un <li> por plato: «nombre — precio» (el precio, con tu euros()). Pista: foreach.
 <ul id="carta">
-<?php // ✍️ 2.1 · Un <li> por plato: «nombre — precio» (el precio, con tu euros()). Pista: foreach. ?>
+<?php foreach ($platos as $p): ?>
+  <li><?= $p['nombre'] ?> — <?= euros($p['precio']) ?></li>
+<?php endforeach; ?>
 </ul>
 
 <?php // ✍️ 2.3 · Suma los precios de todos los platos. Pista: array_column + array_sum. ?>

@@ -25,7 +25,11 @@ function euros(float $x): string {
 <p id="total">Total de la carta: <?= euros($total) ?></p>
 
 <h2>Para vegetarianos</h2>
-<?php // ✍️ 2.4 · Quédate solo con los vegetarianos (array_filter) y pinta otra lista igual que la de arriba. ?>
+// ✍️ 2.4 · Quédate solo con los vegetarianos (array_filter) y pinta otra lista igual que la de arriba. ?>
+<?php $vegetarianos = array_filter($platos, fn($p) => $p['vegetariano'] === true); ?>
 <ul id="vegetarianos">
+<?php foreach ( $vegetarianos as $p): ?>
+  <li><?= $p['nombre'] ?></li>
+<?php endforeach; ?>
 </ul>
 </body></html>

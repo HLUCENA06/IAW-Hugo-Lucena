@@ -21,7 +21,8 @@ function euros(float $x): string {
 </ul>
 
 <?php // ✍️ 2.3 · Suma los precios de todos los platos. Pista: array_column + array_sum. ?>
-<p id="total">Total de la carta: <?php /* ✍️ el total, con euros() */ ?></p>
+<?php $total = array_sum(array_column($platos, 'precio')); ?>
+<p id="total">Total de la carta: <?= euros($total) ?></p>
 
 <h2>Para vegetarianos</h2>
 <?php // ✍️ 2.4 · Quédate solo con los vegetarianos (array_filter) y pinta otra lista igual que la de arriba. ?>

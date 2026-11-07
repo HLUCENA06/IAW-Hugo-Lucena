@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // $elegido = $platos[0];
     $elegido = null ;
     foreach ($platos as $p) {
-    	if ($elegido['nombre'] === $plato) {
+    	if ($p['nombre'] === $plato) {
         	$elegido = $p ;
     	}
     }
@@ -53,9 +53,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
     	$hecho = true ;
     }
-
-	$hecho = true ;
     }
+
 require __DIR__ . '/inc/cabecera.php';
 ?>
 <form method="post">
@@ -77,8 +76,8 @@ require __DIR__ . '/inc/cabecera.php';
 <?php endforeach; ?>
 <?php if ($hecho): ?>
 <?php // ✍️ 3.5 · Estas líneas imprimen lo que escribió el usuario TAL CUAL: arréglalas para que no haya XSS. ?>
-  <p class="ok" id="pedido">Pedido recibido, <?= $nombre ?>: <?= $cantidad ?> × <?= $elegido['nombre'] ?>.</p>
-  <p id="comentario">Comentario: <?= $comentario ?></p>
+  <p class="ok" id="pedido">Pedido recibido, <?= e($nombre) ?>: <?= $cantidad ?> × <?= e($elegido['nombre']) ?>.</p>
+  <p id="comentario">Comentario: <?= e($comentario) ?></p>
   <p id="total">Total: <?= euros($cantidad * $elegido['precio']) ?></p>
 <?php endif; ?>
 </body></html>

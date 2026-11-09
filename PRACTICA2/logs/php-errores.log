@@ -18,3 +18,53 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /var/www/radio/error.php on line 5
+[09-Nov-2026 10:59:24 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 2097152 bytes) in /var/www/radio/inc/util.php on line 10
+[09-Nov-2026 10:59:24 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 2097152 bytes) in /var/www/radio/inc/util.php on line 10
+[09-Nov-2026 10:59:25 UTC] PHP Warning:  require(/var/www/radio/inc/configuracion-que-no-existe.php): Failed to open stream: No such file or directory in /var/www/radio/error.php on line 5
+[09-Nov-2026 10:59:25 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/var/www/radio/inc/configuracion-que-no-existe.php' (include_path='.:/usr/local/lib/php') in /var/www/radio/error.php:5
+Stack trace:
+#0 {main}
+  thrown in /var/www/radio/error.php on line 5
+[09-Nov-2026 10:59:26 UTC] PHP Warning:  require(/var/www/radio/inc/configuracion-que-no-existe.php): Failed to open stream: No such file or directory in /var/www/radio/error.php on line 5
+[09-Nov-2026 10:59:26 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/var/www/radio/inc/configuracion-que-no-existe.php' (include_path='.:/usr/local/lib/php') in /var/www/radio/error.php:5
+Stack trace:
+#0 {main}
+  thrown in /var/www/radio/error.php on line 5
+[09-Nov-2026 10:59:26 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 2097152 bytes) in /var/www/radio/inc/util.php on line 10
+[09-Nov-2026 10:59:27 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 2097152 bytes) in /var/www/radio/inc/util.php on line 10
+[09-Nov-2026 11:04:57 UTC] PHP Parse error:  syntax error, unexpected token "return" in /var/www/radio/inc/util.php on line 11
+[09-Nov-2026 11:04:57 UTC] PHP Parse error:  syntax error, unexpected token "return" in /var/www/radio/inc/util.php on line 11
+[09-Nov-2026 11:04:57 UTC] PHP Parse error:  syntax error, unexpected token "return" in /var/www/radio/inc/util.php on line 11
+[09-Nov-2026 11:04:58 UTC] PHP Warning:  require(/var/www/radio/inc/configuracion-que-no-existe.php): Failed to open stream: No such file or directory in /var/www/radio/error.php on line 5
+[09-Nov-2026 11:04:58 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/var/www/radio/inc/configuracion-que-no-existe.php' (include_path='.:/usr/local/lib/php') in /var/www/radio/error.php:5
+Stack trace:
+#0 {main}
+  thrown in /var/www/radio/error.php on line 5
+[09-Nov-2026 11:04:59 UTC] PHP Warning:  require(/var/www/radio/inc/configuracion-que-no-existe.php): Failed to open stream: No such file or directory in /var/www/radio/error.php on line 5
+[09-Nov-2026 11:04:59 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/var/www/radio/inc/configuracion-que-no-existe.php' (include_path='.:/usr/local/lib/php') in /var/www/radio/error.php:5
+Stack trace:
+#0 {main}
+  thrown in /var/www/radio/error.php on line 5
+[09-Nov-2026 11:04:59 UTC] PHP Parse error:  syntax error, unexpected token "return" in /var/www/radio/inc/util.php on line 11
+[09-Nov-2026 11:05:00 UTC] PHP Parse error:  syntax error, unexpected token "return" in /var/www/radio/inc/util.php on line 11
+[09-Nov-2026 11:05:01 UTC] PHP Parse error:  syntax error, unexpected token "return" in /var/www/radio/inc/util.php on line 11
+[09-Nov-2026 11:09:14 UTC] PHP Warning:  require(/var/www/radio/inc/configuracion-que-no-existe.php): Failed to open stream: No such file or directory in /var/www/radio/error.php on line 5
+[09-Nov-2026 11:09:14 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/var/www/radio/inc/configuracion-que-no-existe.php' (include_path='.:/usr/local/lib/php') in /var/www/radio/error.php:5
+Stack trace:
+#0 {main}
+  thrown in /var/www/radio/error.php on line 5
+[09-Nov-2026 11:09:14 UTC] PHP Warning:  require(/var/www/radio/inc/configuracion-que-no-existe.php): Failed to open stream: No such file or directory in /var/www/radio/error.php on line 5
+[09-Nov-2026 11:09:14 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/var/www/radio/inc/configuracion-que-no-existe.php' (include_path='.:/usr/local/lib/php') in /var/www/radio/error.php:5
+Stack trace:
+#0 {main}
+  thrown in /var/www/radio/error.php on line 5
+[09-Nov-2026 11:15:58 UTC] PHP Warning:  require(/var/www/radio/inc/configuracion-que-no-existe.php): Failed to open stream: No such file or directory in /var/www/radio/error.php on line 5
+[09-Nov-2026 11:15:58 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/var/www/radio/inc/configuracion-que-no-existe.php' (include_path='.:/usr/local/lib/php') in /var/www/radio/error.php:5
+Stack trace:
+#0 {main}
+  thrown in /var/www/radio/error.php on line 5
+[09-Nov-2026 11:15:58 UTC] PHP Warning:  require(/var/www/radio/inc/configuracion-que-no-existe.php): Failed to open stream: No such file or directory in /var/www/radio/error.php on line 5
+[09-Nov-2026 11:15:58 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/var/www/radio/inc/configuracion-que-no-existe.php' (include_path='.:/usr/local/lib/php') in /var/www/radio/error.php:5
+Stack trace:
+#0 {main}
+  thrown in /var/www/radio/error.php on line 5

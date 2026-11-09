@@ -149,3 +149,31 @@
 [2026-11-09 11:15:55 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
 [2026-11-09 11:15:55 +0000] [1] [INFO] Using worker: sync
 [2026-11-09 11:15:55 +0000] [7] [INFO] Booting worker with pid: 7
+[2026-11-09 11:17:12 +0000] [1] [INFO] Handling signal: term
+[2026-11-09 11:17:12 +0000] [7] [INFO] Worker exiting (pid: 7)
+[2026-11-09 11:17:12 +0000] [1] [INFO] Shutting down: Master
+[2026-11-09 11:51:22 +0000] [1] [INFO] Starting gunicorn 23.0.0
+[2026-11-09 11:51:22 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+[2026-11-09 11:51:22 +0000] [1] [INFO] Using worker: sync
+[2026-11-09 11:51:22 +0000] [7] [INFO] Booting worker with pid: 7
+[2026-11-09 11:51:39 +0000] [1] [INFO] Handling signal: term
+[2026-11-09 11:51:39 +0000] [7] [INFO] Worker exiting (pid: 7)
+[2026-11-09 11:51:39 +0000] [1] [INFO] Shutting down: Master
+[2026-11-09 11:51:40 +0000] [1] [INFO] Starting gunicorn 23.0.0
+[2026-11-09 11:51:40 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+[2026-11-09 11:51:40 +0000] [1] [INFO] Using worker: sync
+[2026-11-09 11:51:40 +0000] [7] [INFO] Booting worker with pid: 7
+[2026-11-09 11:52:25 +0000] [1] [INFO] Handling signal: term
+[2026-11-09 11:52:25 +0000] [7] [INFO] Worker exiting (pid: 7)
+[2026-11-09 11:52:26 +0000] [1] [INFO] Shutting down: Master
+[2026-11-09 11:52:26 +0000] [1] [INFO] Starting gunicorn 23.0.0
+[2026-11-09 11:52:26 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+[2026-11-09 11:52:26 +0000] [1] [INFO] Using worker: sync
+[2026-11-09 11:52:26 +0000] [7] [INFO] Booting worker with pid: 7
+[2026-11-09 11:52:31 +0000] [1] [INFO] Handling signal: term
+[2026-11-09 11:52:31 +0000] [7] [INFO] Worker exiting (pid: 7)
+[2026-11-09 11:52:31 +0000] [1] [INFO] Shutting down: Master
+[2026-11-09 11:52:31 +0000] [1] [INFO] Starting gunicorn 23.0.0
+[2026-11-09 11:52:31 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+[2026-11-09 11:52:31 +0000] [1] [INFO] Using worker: sync
+[2026-11-09 11:52:31 +0000] [7] [INFO] Booting worker with pid: 7

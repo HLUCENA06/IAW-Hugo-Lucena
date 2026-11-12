@@ -82,7 +82,7 @@ def pista(id):
     return render_template("pista.html", pista=p)
 
 
-@app.route("/reservar", methods=["POST"])   # ✍️ 2.2 El formulario se envía con POST, y esta ruta no lo acepta (405)
+@app.route("/reservar", methods=["GET", "POST"])   # ✍️ 2.2 El formulario se envía con POST, y esta ruta no lo acepta (405)
 def reservar():
     errores = []
     hecha = None

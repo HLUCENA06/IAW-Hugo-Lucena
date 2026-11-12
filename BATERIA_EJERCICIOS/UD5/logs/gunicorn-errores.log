@@ -1,0 +1,18 @@
+[2026-11-12 16:39:21,459] ERROR in app: Exception on /error [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/srv/polideportivo/app.py", line 168, in error
+    return f"Cada hora libre sale a {len(PISTAS) / horas_libres} pistas"
+                                     ~~~~~~~~~~~~^~~~~~~~~~~~~~
+ZeroDivisionError: division by zero

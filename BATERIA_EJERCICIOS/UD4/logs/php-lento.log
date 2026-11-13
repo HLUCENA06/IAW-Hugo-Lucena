@@ -1,4 +1,4 @@
 
-[09-Nov-2026 10:13:59]  [pool www] pid 13
+[09-Nov-2026 10:30:45]  [pool www] pid 12
 script_filename = /var/www/cafeteria/lento.php
-[0x00007baad6a130b0] sleep() /var/www/cafeteria/lento.php:5
+[0x00007376878130b0] sleep() /var/www/cafeteria/lento.php:5

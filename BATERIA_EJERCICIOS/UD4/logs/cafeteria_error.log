@@ -3,3 +3,5 @@
 2026/11/07 18:14:25 [error] 1120#1120: *292 access forbidden by rule, client: 172.18.0.3, server: cafeteria.iaw.local, request: "GET /inc/platos.php HTTP/1.1", host: "cafeteria.iaw.local"
 2026/11/09 10:14:00 [error] 296#296: *123 access forbidden by rule, client: 172.18.0.3, server: cafeteria.iaw.local, request: "GET /info.php HTTP/1.1", host: "cafeteria.iaw.local"
 2026/11/09 10:14:00 [error] 296#296: *124 access forbidden by rule, client: 172.18.0.3, server: cafeteria.iaw.local, request: "GET /inc/platos.php HTTP/1.1", host: "cafeteria.iaw.local"
+2026/11/09 10:30:47 [error] 332#332: *173 access forbidden by rule, client: 172.18.0.3, server: cafeteria.iaw.local, request: "GET /info.php HTTP/1.1", host: "cafeteria.iaw.local"
+2026/11/09 10:30:47 [error] 332#332: *174 access forbidden by rule, client: 172.18.0.3, server: cafeteria.iaw.local, request: "GET /inc/platos.php HTTP/1.1", host: "cafeteria.iaw.local"

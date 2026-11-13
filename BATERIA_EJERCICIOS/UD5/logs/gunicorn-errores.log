@@ -1,4 +1,4 @@
-[2026-11-13 15:28:40,295] ERROR in app: Exception on /error [GET]
+[2026-11-13 15:30:47,176] ERROR in app: Exception on /error [GET]
 Traceback (most recent call last):
   File "/usr/local/lib/python3.12/site-packages/flask/app.py", line 1473, in wsgi_app
     response = self.full_dispatch_request()

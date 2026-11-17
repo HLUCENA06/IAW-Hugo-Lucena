@@ -2358,3 +2358,395 @@ pymysql.err.OperationalError: (1045, "Access denied for user 'root'@'172.22.0.4'
 [2026-11-17 18:41:30 +0000] [9] [INFO] Booting worker with pid: 9
 [2026-11-17 18:41:30 +0000] [10] [INFO] Booting worker with pid: 10
 [2026-11-17 18:41:31 +0000] [11] [INFO] Booting worker with pid: 11
+[2026-11-17 18:41:58 +0000] [1] [INFO] Handling signal: term
+[2026-11-17 18:41:58 +0000] [10] [INFO] Worker exiting (pid: 10)
+[2026-11-17 18:41:58 +0000] [9] [INFO] Worker exiting (pid: 9)
+[2026-11-17 18:41:58 +0000] [11] [INFO] Worker exiting (pid: 11)
+[2026-11-17 18:41:59 +0000] [1] [INFO] Shutting down: Master
+[2026-11-17 18:41:59 +0000] [1] [INFO] Starting gunicorn 23.0.0
+[2026-11-17 18:41:59 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+[2026-11-17 18:41:59 +0000] [1] [INFO] Using worker: sync
+[2026-11-17 18:41:59 +0000] [9] [INFO] Booting worker with pid: 9
+[2026-11-17 18:41:59 +0000] [10] [INFO] Booting worker with pid: 10
+[2026-11-17 18:41:59 +0000] [11] [INFO] Booting worker with pid: 11
+[2026-11-17 18:46:40 +0000] [1] [INFO] Handling signal: term
+[2026-11-17 18:46:40 +0000] [9] [INFO] Worker exiting (pid: 9)
+[2026-11-17 18:46:40 +0000] [10] [INFO] Worker exiting (pid: 10)
+[2026-11-17 18:46:40 +0000] [11] [INFO] Worker exiting (pid: 11)
+[2026-11-17 18:46:40 +0000] [1] [INFO] Shutting down: Master
+[2026-11-17 18:46:40 +0000] [1] [INFO] Starting gunicorn 23.0.0
+[2026-11-17 18:46:40 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+[2026-11-17 18:46:40 +0000] [1] [INFO] Using worker: sync
+[2026-11-17 18:46:40 +0000] [9] [INFO] Booting worker with pid: 9
+[2026-11-17 18:46:40 +0000] [10] [INFO] Booting worker with pid: 10
+[2026-11-17 18:46:40 +0000] [11] [INFO] Booting worker with pid: 11
+[2026-11-17 18:52:40 +0000] [1] [INFO] Handling signal: term
+[2026-11-17 18:52:40 +0000] [9] [INFO] Worker exiting (pid: 9)
+[2026-11-17 18:52:40 +0000] [10] [INFO] Worker exiting (pid: 10)
+[2026-11-17 18:52:40 +0000] [11] [INFO] Worker exiting (pid: 11)
+[2026-11-17 18:52:40 +0000] [1] [INFO] Shutting down: Master
+[2026-11-17 18:52:41 +0000] [1] [INFO] Starting gunicorn 23.0.0
+[2026-11-17 18:52:41 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+[2026-11-17 18:52:41 +0000] [1] [INFO] Using worker: sync
+[2026-11-17 18:52:41 +0000] [9] [INFO] Booting worker with pid: 9
+[2026-11-17 18:52:41 +0000] [10] [INFO] Booting worker with pid: 10
+[2026-11-17 18:52:41 +0000] [11] [INFO] Booting worker with pid: 11
+[2026-11-17 18:52:43 +0000] [1] [INFO] Handling signal: term
+[2026-11-17 18:52:43 +0000] [9] [INFO] Worker exiting (pid: 9)
+[2026-11-17 18:52:43 +0000] [11] [INFO] Worker exiting (pid: 11)
+[2026-11-17 18:52:43 +0000] [10] [INFO] Worker exiting (pid: 10)
+[2026-11-17 18:52:43 +0000] [1] [INFO] Shutting down: Master
+[2026-11-17 18:52:43 +0000] [1] [INFO] Starting gunicorn 23.0.0
+[2026-11-17 18:52:43 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+[2026-11-17 18:52:43 +0000] [1] [INFO] Using worker: sync
+[2026-11-17 18:52:43 +0000] [9] [INFO] Booting worker with pid: 9
+[2026-11-17 18:52:43 +0000] [10] [INFO] Booting worker with pid: 10
+[2026-11-17 18:52:43 +0000] [11] [INFO] Booting worker with pid: 11
+[2026-11-17 18:52:45,444] ERROR in app: Exception on /api/buscar [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/srv/app/app.py", line 53, in buscar
+    cur.execute(f"SELECT codigo, tipo, aula, estado FROM equipos WHERE aula = %s ORDER BY codigo")
+  File "/usr/local/lib/python3.12/site-packages/pymysql/cursors.py", line 153, in execute
+    result = self._query(query)
+             ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+  File "/usr/local/lib/python3.12/site-packages/pymysql/connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/pymysql/connections.py", line 825, in _read_query_result
+    result.read()
+  File "/usr/local/lib/python3.12/site-packages/pymysql/connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/pymysql/connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "/usr/local/lib/python3.12/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/usr/local/lib/python3.12/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.ProgrammingError: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '%s ORDER BY codigo' at line 1")
+[2026-11-17 18:52:45,660] ERROR in app: Exception on /api/buscar [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/srv/app/app.py", line 53, in buscar
+    cur.execute(f"SELECT codigo, tipo, aula, estado FROM equipos WHERE aula = %s ORDER BY codigo")
+  File "/usr/local/lib/python3.12/site-packages/pymysql/cursors.py", line 153, in execute
+    result = self._query(query)
+             ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+  File "/usr/local/lib/python3.12/site-packages/pymysql/connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/pymysql/connections.py", line 825, in _read_query_result
+    result.read()
+  File "/usr/local/lib/python3.12/site-packages/pymysql/connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/pymysql/connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "/usr/local/lib/python3.12/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/usr/local/lib/python3.12/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.ProgrammingError: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '%s ORDER BY codigo' at line 1")
+[2026-11-17 18:57:14 +0000] [1] [INFO] Handling signal: term
+[2026-11-17 18:57:14 +0000] [9] [INFO] Worker exiting (pid: 9)
+[2026-11-17 18:57:14 +0000] [11] [INFO] Worker exiting (pid: 11)
+[2026-11-17 18:57:14 +0000] [10] [INFO] Worker exiting (pid: 10)
+[2026-11-17 18:57:14 +0000] [1] [INFO] Shutting down: Master
+[2026-11-17 18:57:14 +0000] [1] [INFO] Starting gunicorn 23.0.0
+[2026-11-17 18:57:14 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+[2026-11-17 18:57:14 +0000] [1] [INFO] Using worker: sync
+[2026-11-17 18:57:14 +0000] [9] [INFO] Booting worker with pid: 9
+[2026-11-17 18:57:14 +0000] [10] [INFO] Booting worker with pid: 10
+[2026-11-17 18:57:14 +0000] [11] [INFO] Booting worker with pid: 11
+[2026-11-17 18:57:16 +0000] [1] [INFO] Handling signal: term
+[2026-11-17 18:57:16 +0000] [9] [INFO] Worker exiting (pid: 9)
+[2026-11-17 18:57:16 +0000] [10] [INFO] Worker exiting (pid: 10)
+[2026-11-17 18:57:16 +0000] [11] [INFO] Worker exiting (pid: 11)
+[2026-11-17 18:57:16 +0000] [1] [INFO] Shutting down: Master
+[2026-11-17 18:57:17 +0000] [1] [INFO] Starting gunicorn 23.0.0
+[2026-11-17 18:57:17 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+[2026-11-17 18:57:17 +0000] [1] [INFO] Using worker: sync
+[2026-11-17 18:57:17 +0000] [9] [INFO] Booting worker with pid: 9
+[2026-11-17 18:57:17 +0000] [10] [INFO] Booting worker with pid: 10
+[2026-11-17 18:57:17 +0000] [11] [INFO] Booting worker with pid: 11
+[2026-11-17 18:57:18,890] ERROR in app: Exception on /api/buscar [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/srv/app/app.py", line 53, in buscar
+    cur.execute(f"SELECT codigo, tipo, aula, estado FROM equipos WHERE aula = %s ORDER BY codigo")
+  File "/usr/local/lib/python3.12/site-packages/pymysql/cursors.py", line 153, in execute
+    result = self._query(query)
+             ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+  File "/usr/local/lib/python3.12/site-packages/pymysql/connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/pymysql/connections.py", line 825, in _read_query_result
+    result.read()
+  File "/usr/local/lib/python3.12/site-packages/pymysql/connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/pymysql/connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "/usr/local/lib/python3.12/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/usr/local/lib/python3.12/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.ProgrammingError: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '%s ORDER BY codigo' at line 1")
+[2026-11-17 18:57:19,089] ERROR in app: Exception on /api/buscar [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/srv/app/app.py", line 53, in buscar
+    cur.execute(f"SELECT codigo, tipo, aula, estado FROM equipos WHERE aula = %s ORDER BY codigo")
+  File "/usr/local/lib/python3.12/site-packages/pymysql/cursors.py", line 153, in execute
+    result = self._query(query)
+             ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+  File "/usr/local/lib/python3.12/site-packages/pymysql/connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/pymysql/connections.py", line 825, in _read_query_result
+    result.read()
+  File "/usr/local/lib/python3.12/site-packages/pymysql/connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/pymysql/connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "/usr/local/lib/python3.12/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/usr/local/lib/python3.12/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.ProgrammingError: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '%s ORDER BY codigo' at line 1")
+[2026-11-17 19:00:39 +0000] [1] [INFO] Handling signal: term
+[2026-11-17 19:00:39 +0000] [10] [INFO] Worker exiting (pid: 10)
+[2026-11-17 19:00:39 +0000] [9] [INFO] Worker exiting (pid: 9)
+[2026-11-17 19:00:39 +0000] [11] [INFO] Worker exiting (pid: 11)
+[2026-11-17 19:00:39 +0000] [1] [INFO] Shutting down: Master
+[2026-11-17 19:00:39 +0000] [1] [INFO] Starting gunicorn 23.0.0
+[2026-11-17 19:00:39 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+[2026-11-17 19:00:39 +0000] [1] [INFO] Using worker: sync
+[2026-11-17 19:00:39 +0000] [9] [INFO] Booting worker with pid: 9
+[2026-11-17 19:00:39 +0000] [10] [INFO] Booting worker with pid: 10
+[2026-11-17 19:00:39 +0000] [11] [INFO] Booting worker with pid: 11
+[2026-11-17 19:00:41 +0000] [1] [INFO] Handling signal: term
+[2026-11-17 19:00:41 +0000] [11] [INFO] Worker exiting (pid: 11)
+[2026-11-17 19:00:41 +0000] [9] [INFO] Worker exiting (pid: 9)
+[2026-11-17 19:00:41 +0000] [10] [INFO] Worker exiting (pid: 10)
+[2026-11-17 19:00:41 +0000] [1] [INFO] Shutting down: Master
+[2026-11-17 19:00:42 +0000] [1] [INFO] Starting gunicorn 23.0.0
+[2026-11-17 19:00:42 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+[2026-11-17 19:00:42 +0000] [1] [INFO] Using worker: sync
+[2026-11-17 19:00:42 +0000] [9] [INFO] Booting worker with pid: 9
+[2026-11-17 19:00:42 +0000] [10] [INFO] Booting worker with pid: 10
+[2026-11-17 19:00:42 +0000] [11] [INFO] Booting worker with pid: 11
+[2026-11-17 19:00:43,873] ERROR in app: Exception on /api/buscar [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/srv/app/app.py", line 53, in buscar
+    cur.execute("SELECT codigo, tipo, aula, estado FROM equipos WHERE aula = %s, ORDER BY codigo")
+  File "/usr/local/lib/python3.12/site-packages/pymysql/cursors.py", line 153, in execute
+    result = self._query(query)
+             ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+  File "/usr/local/lib/python3.12/site-packages/pymysql/connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/pymysql/connections.py", line 825, in _read_query_result
+    result.read()
+  File "/usr/local/lib/python3.12/site-packages/pymysql/connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/pymysql/connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "/usr/local/lib/python3.12/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/usr/local/lib/python3.12/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.ProgrammingError: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '%s, ORDER BY codigo' at line 1")
+[2026-11-17 19:00:44,078] ERROR in app: Exception on /api/buscar [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/srv/app/app.py", line 53, in buscar
+    cur.execute("SELECT codigo, tipo, aula, estado FROM equipos WHERE aula = %s, ORDER BY codigo")
+  File "/usr/local/lib/python3.12/site-packages/pymysql/cursors.py", line 153, in execute
+    result = self._query(query)
+             ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+  File "/usr/local/lib/python3.12/site-packages/pymysql/connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/pymysql/connections.py", line 825, in _read_query_result
+    result.read()
+  File "/usr/local/lib/python3.12/site-packages/pymysql/connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/pymysql/connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "/usr/local/lib/python3.12/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/usr/local/lib/python3.12/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.ProgrammingError: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '%s, ORDER BY codigo' at line 1")
+[2026-11-17 19:01:38 +0000] [1] [INFO] Handling signal: term
+[2026-11-17 19:01:38 +0000] [10] [INFO] Worker exiting (pid: 10)
+[2026-11-17 19:01:38 +0000] [11] [INFO] Worker exiting (pid: 11)
+[2026-11-17 19:01:38 +0000] [9] [INFO] Worker exiting (pid: 9)
+[2026-11-17 19:01:38 +0000] [1] [INFO] Shutting down: Master
+[2026-11-17 19:01:38 +0000] [1] [INFO] Starting gunicorn 23.0.0
+[2026-11-17 19:01:38 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+[2026-11-17 19:01:38 +0000] [1] [INFO] Using worker: sync
+[2026-11-17 19:01:38 +0000] [9] [INFO] Booting worker with pid: 9
+[2026-11-17 19:01:38 +0000] [10] [INFO] Booting worker with pid: 10
+[2026-11-17 19:01:38 +0000] [11] [INFO] Booting worker with pid: 11
+[2026-11-17 19:01:40 +0000] [1] [INFO] Handling signal: term
+[2026-11-17 19:01:40 +0000] [11] [INFO] Worker exiting (pid: 11)
+[2026-11-17 19:01:40 +0000] [10] [INFO] Worker exiting (pid: 10)
+[2026-11-17 19:01:40 +0000] [9] [INFO] Worker exiting (pid: 9)
+[2026-11-17 19:01:40 +0000] [1] [INFO] Shutting down: Master
+[2026-11-17 19:01:41 +0000] [1] [INFO] Starting gunicorn 23.0.0
+[2026-11-17 19:01:41 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+[2026-11-17 19:01:41 +0000] [1] [INFO] Using worker: sync
+[2026-11-17 19:01:41 +0000] [9] [INFO] Booting worker with pid: 9
+[2026-11-17 19:01:41 +0000] [10] [INFO] Booting worker with pid: 10
+[2026-11-17 19:01:41 +0000] [11] [INFO] Booting worker with pid: 11
+[2026-11-17 19:03:32 +0000] [1] [INFO] Handling signal: term
+[2026-11-17 19:03:32 +0000] [10] [INFO] Worker exiting (pid: 10)
+[2026-11-17 19:03:32 +0000] [9] [INFO] Worker exiting (pid: 9)
+[2026-11-17 19:03:32 +0000] [11] [INFO] Worker exiting (pid: 11)
+[2026-11-17 19:03:32 +0000] [1] [INFO] Shutting down: Master
+[2026-11-17 19:03:32 +0000] [1] [INFO] Starting gunicorn 23.0.0
+[2026-11-17 19:03:32 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+[2026-11-17 19:03:32 +0000] [1] [INFO] Using worker: sync
+[2026-11-17 19:03:32 +0000] [9] [INFO] Booting worker with pid: 9
+[2026-11-17 19:03:32 +0000] [10] [INFO] Booting worker with pid: 10
+[2026-11-17 19:03:32 +0000] [11] [INFO] Booting worker with pid: 11
+[2026-11-17 19:03:34 +0000] [1] [INFO] Handling signal: term
+[2026-11-17 19:03:34 +0000] [11] [INFO] Worker exiting (pid: 11)
+[2026-11-17 19:03:34 +0000] [9] [INFO] Worker exiting (pid: 9)
+[2026-11-17 19:03:34 +0000] [10] [INFO] Worker exiting (pid: 10)
+[2026-11-17 19:03:34 +0000] [1] [INFO] Shutting down: Master
+[2026-11-17 19:03:35 +0000] [1] [INFO] Starting gunicorn 23.0.0
+[2026-11-17 19:03:35 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+[2026-11-17 19:03:35 +0000] [1] [INFO] Using worker: sync
+[2026-11-17 19:03:35 +0000] [9] [INFO] Booting worker with pid: 9
+[2026-11-17 19:03:35 +0000] [10] [INFO] Booting worker with pid: 10
+[2026-11-17 19:03:35 +0000] [11] [INFO] Booting worker with pid: 11
+[2026-11-17 19:10:33 +0000] [1] [INFO] Handling signal: term
+[2026-11-17 19:10:33 +0000] [9] [INFO] Worker exiting (pid: 9)
+[2026-11-17 19:10:33 +0000] [10] [INFO] Worker exiting (pid: 10)
+[2026-11-17 19:10:33 +0000] [11] [INFO] Worker exiting (pid: 11)
+[2026-11-17 19:10:33 +0000] [1] [INFO] Shutting down: Master
+[2026-11-17 19:10:34 +0000] [1] [INFO] Starting gunicorn 23.0.0
+[2026-11-17 19:10:34 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+[2026-11-17 19:10:34 +0000] [1] [INFO] Using worker: sync
+[2026-11-17 19:10:34 +0000] [8] [INFO] Booting worker with pid: 8
+[2026-11-17 19:10:34 +0000] [9] [INFO] Booting worker with pid: 9
+[2026-11-17 19:10:34 +0000] [10] [INFO] Booting worker with pid: 10
+[2026-11-17 19:10:52 +0000] [1] [INFO] Handling signal: term
+[2026-11-17 19:10:52 +0000] [8] [INFO] Worker exiting (pid: 8)
+[2026-11-17 19:10:52 +0000] [9] [INFO] Worker exiting (pid: 9)
+[2026-11-17 19:10:52 +0000] [10] [INFO] Worker exiting (pid: 10)
+[2026-11-17 19:10:52 +0000] [1] [INFO] Shutting down: Master
+[2026-11-17 19:10:53 +0000] [1] [INFO] Starting gunicorn 23.0.0
+[2026-11-17 19:10:53 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+[2026-11-17 19:10:53 +0000] [1] [INFO] Using worker: sync
+[2026-11-17 19:10:53 +0000] [9] [INFO] Booting worker with pid: 9
+[2026-11-17 19:10:53 +0000] [10] [INFO] Booting worker with pid: 10
+[2026-11-17 19:10:53 +0000] [11] [INFO] Booting worker with pid: 11
+[2026-11-17 19:11:03 +0000] [1] [INFO] Handling signal: term
+[2026-11-17 19:11:03 +0000] [11] [INFO] Worker exiting (pid: 11)
+[2026-11-17 19:11:03 +0000] [9] [INFO] Worker exiting (pid: 9)
+[2026-11-17 19:11:03 +0000] [10] [INFO] Worker exiting (pid: 10)
+[2026-11-17 19:11:03 +0000] [1] [INFO] Shutting down: Master
+[2026-11-17 19:11:04 +0000] [1] [INFO] Starting gunicorn 23.0.0
+[2026-11-17 19:11:04 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+[2026-11-17 19:11:04 +0000] [1] [INFO] Using worker: sync
+[2026-11-17 19:11:04 +0000] [9] [INFO] Booting worker with pid: 9
+[2026-11-17 19:11:04 +0000] [10] [INFO] Booting worker with pid: 10
+[2026-11-17 19:11:04 +0000] [11] [INFO] Booting worker with pid: 11
+[2026-11-17 19:11:40 +0000] [1] [INFO] Handling signal: term
+[2026-11-17 19:11:40 +0000] [9] [INFO] Worker exiting (pid: 9)
+[2026-11-17 19:11:40 +0000] [10] [INFO] Worker exiting (pid: 10)
+[2026-11-17 19:11:40 +0000] [11] [INFO] Worker exiting (pid: 11)
+[2026-11-17 19:11:41 +0000] [1] [INFO] Shutting down: Master
+[2026-11-17 19:11:41 +0000] [1] [INFO] Starting gunicorn 23.0.0
+[2026-11-17 19:11:41 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+[2026-11-17 19:11:41 +0000] [1] [INFO] Using worker: sync
+[2026-11-17 19:11:41 +0000] [9] [INFO] Booting worker with pid: 9
+[2026-11-17 19:11:41 +0000] [10] [INFO] Booting worker with pid: 10
+[2026-11-17 19:11:41 +0000] [11] [INFO] Booting worker with pid: 11

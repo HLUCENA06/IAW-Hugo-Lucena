@@ -67,4 +67,17 @@ def incidencias():
     #        - si todo está bien: INSERT con %s, c.commit() y {"id": cur.lastrowid}, 201
     #
     # Todo con consultas preparadas: la descripción la escribe cualquiera.
-    return jsonify({"error": "Sin hacer todavía"}), 501
+    with conectar() as c, c.cursor() as cur:
+        if request.method == "GET":
+            cur.execute("SELECT id, equipo_id, descripcion FROM incidencias ORDER BY id DESC")
+            return jsonify(cur.fetchall())
+        datos = request.get_json(silent=True) or {}
+        descripcion = datos.get("descripcion", "").strip()
+        if descripcion == "":
+            return jsonify({"error": "Descripción vacía"}), 422
+        cur.execute("SELECT id FROM equipos WHERE id = %s", (datos.get("equipo_id"),))
+        if cur.fetchone() is None:
+            return jsonify({"error": "El equipo no existe"}), 422
+        cur.execute("INSERT INTO incidencias (equipo_id, descripcion) VALUES (%s, %s)", (datos.get("equipo_id"), datos.get("descripcion")))
+        c.commit()
+        return jsonify({"id": cur.lastrowid}), 201

@@ -131,3 +131,7 @@
 2026/11/23 18:19:38 [error] 350#350: *370 access forbidden by rule, client: 172.21.0.3, server: radio.iaw.local, request: "GET /diagnostico.php HTTP/1.1", host: "radio.iaw.local"
 2026/11/23 18:19:38 [error] 350#350: *371 access forbidden by rule, client: 172.21.0.3, server: radio.iaw.local, request: "GET /inc/db.php HTTP/1.1", host: "radio.iaw.local"
 2026/11/23 18:19:39 [error] 350#350: *372 access forbidden by rule, client: 172.21.0.3, server: radio.iaw.local, request: "GET /inc/util.php HTTP/1.1", host: "radio.iaw.local"
+2026/11/23 18:26:29 [error] 512#512: *559 access forbidden by rule, client: 172.21.0.3, server: radio.iaw.local, request: "GET /diagnostico.php HTTP/1.1", host: "radio.iaw.local"
+2026/11/23 18:26:29 [error] 512#512: *560 access forbidden by rule, client: 172.21.0.3, server: radio.iaw.local, request: "GET /diagnostico.php HTTP/1.1", host: "radio.iaw.local"
+2026/11/23 18:26:30 [error] 512#512: *561 access forbidden by rule, client: 172.21.0.3, server: radio.iaw.local, request: "GET /inc/db.php HTTP/1.1", host: "radio.iaw.local"
+2026/11/23 18:26:30 [error] 512#512: *562 access forbidden by rule, client: 172.21.0.3, server: radio.iaw.local, request: "GET /inc/util.php HTTP/1.1", host: "radio.iaw.local"

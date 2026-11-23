@@ -138,3 +138,23 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /var/www/radio/error.php on line 5
+[16-Nov-2026 16:27:15 UTC] PHP Warning:  require(/var/www/radio/inc/configuracion-que-no-existe.php): Failed to open stream: No such file or directory in /var/www/radio/error.php on line 5
+[16-Nov-2026 16:27:15 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/var/www/radio/inc/configuracion-que-no-existe.php' (include_path='.:/usr/local/lib/php') in /var/www/radio/error.php:5
+Stack trace:
+#0 {main}
+  thrown in /var/www/radio/error.php on line 5
+[16-Nov-2026 16:27:16 UTC] PHP Warning:  require(/var/www/radio/inc/configuracion-que-no-existe.php): Failed to open stream: No such file or directory in /var/www/radio/error.php on line 5
+[16-Nov-2026 16:27:16 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/var/www/radio/inc/configuracion-que-no-existe.php' (include_path='.:/usr/local/lib/php') in /var/www/radio/error.php:5
+Stack trace:
+#0 {main}
+  thrown in /var/www/radio/error.php on line 5
+[23-Nov-2026 15:45:31 UTC] PHP Warning:  require(/var/www/radio/inc/configuracion-que-no-existe.php): Failed to open stream: No such file or directory in /var/www/radio/error.php on line 5
+[23-Nov-2026 15:45:31 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/var/www/radio/inc/configuracion-que-no-existe.php' (include_path='.:/usr/local/lib/php') in /var/www/radio/error.php:5
+Stack trace:
+#0 {main}
+  thrown in /var/www/radio/error.php on line 5
+[23-Nov-2026 15:45:32 UTC] PHP Warning:  require(/var/www/radio/inc/configuracion-que-no-existe.php): Failed to open stream: No such file or directory in /var/www/radio/error.php on line 5
+[23-Nov-2026 15:45:32 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/var/www/radio/inc/configuracion-que-no-existe.php' (include_path='.:/usr/local/lib/php') in /var/www/radio/error.php:5
+Stack trace:
+#0 {main}
+  thrown in /var/www/radio/error.php on line 5
